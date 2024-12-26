@@ -14,7 +14,7 @@ This project aims to develop an enterprise-grade Retrieval-Augmented Generation 
 ## Getting Started
 
 1. Clone the repository:
-git clone https://github.com/GetachewAbebeA/PrecisionRAG.git
+git clone https://github.com/GetachewAbebe/PrecisionRAG.git
 
 markdown
 Copy
