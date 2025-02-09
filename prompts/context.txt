@@ -1,81 +1,71 @@
-Knowledge  Acquisition
-Understanding  of  Language  Models : Acquire  a  deeper  understanding  of  how  LLMs
-function , including  their  strengths , limitations , and  the  principles  behind  their
-responses .
-Insights  into  Automated  Evaluation  Data  Generation : Gain  knowledge  about  the
-methodology  and  importance  of  creating  test  cases  for  evaluating  prompt
-effectiveness .
-ELO  Rating  System  and  its  Applications : Learn  about  the  ELO  rating  system  used
-for  ranking  prompts , understanding  its  mechanics  and  relevance  in  performance
-evaluation .
-Prompt  Optimization  Strategies : Understand  various  strategies  for  refining  and
-optimizing  prompts  to  achieve  better  alignment  with  specific  goals  and  desired
-outcomes .
-Industry  Best  Practices : Familiarize  with  the  best  practices  in  prompt  engineering
-within  different  industries , learning  about  real - world  applications  and  challenges .
-TEAM
-Tutors : 
-Yabebal
-Emtinan
-Rehmet
-BADGES
-Each  week , one  user  will  be  awarded  one  of  the  badges  below  for  the  best  performance
-in the  category  below .
-In addition  to  being  the  badge  holder  for  that  badge , each  badge  winner  will  get  + 20
-points  to  the  overall  score .
-Visualization - quality  of  visualizations , understandability , skimmability , choice  of
-visualization
-Quality  of  code - reliability , maintainability , efficiency , commenting  - in  future  this  will
-be  CICD/CML
-Innovative  approach  to  analysis -using  latest  algorithms , adding  in  research  paper
-content  and  other  innovative  approaches
-Writing  and  presentation - clarity  of  written  outputs , clarity  of  slides , overall  production
-value6/6/24, 11:51 PM 10 Academy Cohort B Weekly Challenge: Week 7
-https://tenx.10academy.org/trainee/challenge/10 Academy Cohort B Weekly Challenge: Week 7-lwythrp7---75 3/10Most  supportive  in  the  community - helping  others , adding  links , tutoring  those
-struggling
-The  goal  of  this  approach  is  to  support  and  reward  expertise  in  different  parts  of  the
-Machine  learning  engineering  toolbox .
-GROUP WORK POLICY
-Everyone  has  to  submit  all  their  work  individually . 
-INSTRUCTION: AUTOMATIC PROMPT ENGINEERING
-Fundamental  Tasks
-The  core  tasks  for  this  week ’ s  challenge  in  Automatic  Prompt  Engineering  are  outlined
-below :
-1. Understand  Prompt  Engineering  Tools  and  Concepts : Gain  a  thorough
-understanding  of  the  tools  and  theoretical  concepts  involved  in  prompt
-engineering  for  Language  Models  (LLMs) .
-2. Familiarize  with  Language  Models : Learn  about  the  capabilities  and  functionalities
-of advanced  LLMs  like  GPT - 4  and  GPT - 3 . 5 - Turbo .
-3. Develop  a  Plan  for  Prompt  Generation  and  Testing : Create  a  comprehensive  plan
-that  outlines  the  approach  for  automated  prompt  generation , test  case  creation ,
-and  prompt  evaluation .
-4. Set  Up  a  Development  Environment : Prepare  a  suitable  development  environment
-that  supports  the  integration  and  testing  of  LLMs  in  the  prompt  engineering
-process .
-5. Design  User  Interface  for  Prompt  System : Plan  and  initiate  the  development  of  a
-user -friendly  interface  for  prompt  input , refinement , and  performance  analysis .
-6. Plan  Integration  of  LLMs : Strategize  the  integration  of  LLMs  into  the  prompt
-system  for  automated  generation  and  testing .
-7. Build  and  Refine  Prompt  Generation  System : Develop  the  automated  prompt
-generation  system , ensuring  it  aligns  with  user  inputs  and  objectives .
-8. Develop  Automatic  Evaluation  Data  Generation  System : Create  a  system  for
-generating  test  cases  that  evaluate  the  effectiveness  of  prompts  in  various
-scenarios .
-9. Implement  Prompt  Testing  and  Evaluation  Mechanism : Set  up  testing  procedures
-using  Monte  Carlo  matchmaking  and  ELO  rating  systems  to  evaluate  and  rank
-prompts .
-10 . Refine  and  Optimize  System  Based  on  Feedback : Continuously  refine  the  prompt
-generation  and  evaluation  system  based  on  user  feedback  and  performance  data .6/6/24, 11:51 PM 10 Academy Cohort B Weekly Challenge: Week 7
-https://tenx.10academy.org/trainee/challenge/10 Academy Cohort B Weekly Challenge: Week 7-lwythrp7---75 4/10Semantic  Similarity  Matching: Using  NLP  techniques  to  match  prompts  based  on
+Key  Performance  Indicators :
+Understanding  Prompt  ranking  
+Understanding  prompt  matching  
+Ability  to  reuse  previous  knowledge
+Wednesday
+RAG  Evaluation  Data  Generation  (Rehmet)
+Understanding  of  prompt  matching  and  ranking  (Emtinan)
+Thursday
+RAG  evaluation  metrics  (Emtinan)
+RAGOps  - DevOps  of  RAG  development  and  production  deployment  (Rehmet)  
+DELIVERABLES
+NOTE :  Document  should  be  a  PDF  stored  in  google  drive  or  published  blog  link . DO  NOT
+SUBMIT  A  LINK  as  PDF!  If  you  want  to  submit  pdf  document , it  should  be  the  content  of
+your  report  not  a  link . 
+Interim  Submission  - Wednesday  8pm  UTC
+Link  to  your  code  in  GitHub
+Repository  where  you  will  be  using  to  complete  the  tasks  in  this  week ' s
+challenge . A  minimum  requirement  is  that  you  have  a  well  structured
+repository  and  some  coding  progress  is  made .
+A  review  report  of  your  reading  and  understanding  of  Task  1  and  any  progress  you
+made  in  other  tasks . 
+Feedback
+You  may  not  receive  detailed  comments  on  your  interim  submission  but  will  receive  a
+grade .
+Final  Submission  - Saturday  8pm  UTC
+Link  to  your  code  in  GitHub  
+Complete  work   for  Automatic  prompt  generation
+Complete  work   for  Automatic  evaluation  
+Complete  work  for  Evaluation  Data  Generation
+ 
+6/6/24, 11:51 PM 10 Academy Cohort B Weekly Challenge: Week 7
+https://tenx.10academy.org/trainee/challenge/10 Academy Cohort B Weekly Challenge: Week 7-lwythrp7---75 9/1010  Academy  Cohort  B  Weekly
+Challenge : Week  7
+Precision  RAG : Prompt  Tuning  For  Building
+Enterprise  Grade  RAG  Systems
+BUSINESS OBJECTIVE 
+  PromptlyTech  is  an  innovative  e - business  specializing  in  providing  AI - driven  solutions
+for  optimizing  the  use  of  Language  Models  (LLMs)  in  various  industries . The  company
+aims  to  revolutionize  how  businesses  interact  with  LLMs , making  the  technology  more
+accessible , efficient , and  effective . By  addressing  the  challenges  of  prompt  engineering ,
+the  company  plays  a  pivotal  role  in  enhancing  decision - making , operational  efficiency ,
+and  customer  experience  across  various  industries . PromptlyTech ' s  solutions  are
+designed  to  cater  to  the  evolving  needs  of  a  digitally - driven  business  landscape , where
+speed  and  accuracy  are  key  to  staying  competitive .
+The  company  focuses  on  key  services : Automatic  Prompt  Generation , Automatic
+Evaluation  Data  Generation , and  Prompt  Testing  and  Ranking .
+1 . Automatic  Prompt  Generation  Service :
+This  service  streamlines  the  process  of  creating  effective  prompts , enabling
+businesses  to  efficiently  utilize  LLMs  for  generating  high - quality , relevant  content .
+It  significantly  reduces  the  time  and  expertise  required  in  crafting  prompts
+manually .
+2 . Automatic  Evaluation  Data  Generation  Service :
+PromptlyTech ’ s  service  automates  the  generation  of  diverse  test  cases , ensuring
+comprehensive  coverage  and  identifying  potential  issues . This  enhances  the
+reliability  and  performance  of  LLM  applications , saving  significant  time  in  the
+QA(Quality  Assurance)  process .
+3 . Prompt  Testing  and  Ranking  Service :
+6/6/24, 11:51 PM 10 Academy Cohort B Weekly Challenge: Week 7
+https://tenx.10academy.org/trainee/challenge/10 Academy Cohort B Weekly Challenge: Week 7-lwythrp7---75 1/10Semantic  Similarity  Matching: Using  NLP  techniques  to  match  prompts  based  on
 semantic  content , ideal  for  understanding  nuanced  differences  in  prompt
 effectiveness .
 You  should  adopt  an  innovative  approach  to  prompt  evaluation  by  utilizing  Monte  Carlo
-matchmaking and   ELO  rating  systems , or  any  alternative  method  to  match  and  rank .
+matchmaking and    ELO  rating  systems , or  any  alternative  method  to  match  and  rank .
 Task  5 : User  Interface  Development
 Develop  a  user - friendly  interface  for  interacting  with  the  prompt  engineering  system .
-UI Design : Plan  and  design  a  user  interface  that  allows  users  to  easily  input  data ,
+UI  Design : Plan  and  design  a  user  interface  that  allows  users  to  easily  input  data ,
 receive  prompts , and  view  evaluation  results .
-UI Implementation : Develop  and  integrate  the  user  interface  with  the  backend
+UI  Implementation : Develop  and  integrate  the  user  interface  with  the  backend
 prompt  engineering  system .
 Task  6 : System  Integration  and  Testing
 Integrate  all  components  of  the  system  and  conduct  comprehensive  testing .
@@ -84,7 +74,7 @@ interface  components .
 Test  the  entire  system  for  functionality , usability , and  performance . Refine  based
 on  feedback  and  test  results .
 TUTORIALS SCHEDULE
-In the  following , the  Bold indicates  morning  sessions , and  Italic indicates  afternoon
+In  the  following , the  Bold indicates  morning  sessions , and   Italic indicates  afternoon
 sessions .
 Monday : Understanding  Prompt  engineering  
 Here  the  trainees  will  understand  the  week ’ s  challenge .
@@ -96,5 +86,6 @@ Understanding  the  prompt  engineering
 Ability  to  reuse  previous  knowledge
 Tuesday
 RAG  components  (Rehmet)
-Techniques  to  improve  R  (Retrievers)  in  RAG  (Emtinan)6/6/24, 11:51 PM 10 Academy Cohort B Weekly Challenge: Week 7
+Techniques  to  improve  R  (Retrievers)  in  RAG  (Emtinan)
+6/6/24, 11:51 PM 10 Academy Cohort B Weekly Challenge: Week 7
 https://tenx.10academy.org/trainee/challenge/10 Academy Cohort B Weekly Challenge: Week 7-lwythrp7---75 8/10

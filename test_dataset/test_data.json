@@ -1,22 +1,22 @@
 [
     {
-        "user": "Who are the tutors for the challenge?",
-        "assistant": "Yabebal, Emtinan, Rehmet"
+        "user": "What is the focus of PromptlyTech's solutions?",
+        "assistant": "PromptlyTech's solutions are designed to cater to the evolving needs of a digitally-driven business landscape, where speed and accuracy are key to staying competitive."
     },
     {
-        "user": "What is the schedule for tutorials?",
-        "assistant": "Monday: Understanding Prompt engineering, Tuesday: RAG components"
+        "user": "What are the key services offered by PromptlyTech?",
+        "assistant": "The key services offered by PromptlyTech are Automatic Prompt Generation, Automatic Evaluation Data Generation, and Prompt Testing and Ranking."
     },
     {
-        "user": "What are the key performance indicators for the tutorials?",
-        "assistant": "Understanding week's challenge, Understanding the prompt engineering, Ability to reuse previous knowledge"
+        "user": "What is the purpose of the Automatic Evaluation Data Generation Service?",
+        "assistant": "PromptlyTech's service automates the generation of diverse test cases, ensuring comprehensive coverage and identifying potential issues, enhancing the reliability and performance of LLM applications."
     },
     {
-        "user": "What are the techniques to improve R in RAG?",
-        "assistant": "Retrievers"
+        "user": "What is the focus of the Semantic Similarity Matching service?",
+        "assistant": "The Semantic Similarity Matching service focuses on using NLP techniques to match prompts based on semantic content, ideal for understanding nuanced differences in prompt effectiveness."
     },
     {
-        "user": "What is the goal of the approach in the challenge?",
-        "assistant": "Support and reward expertise in different parts of the Machine learning engineering toolbox"
+        "user": "What is the objective of the User Interface Development task?",
+        "assistant": "The objective of the User Interface Development task is to develop a user-friendly interface for interacting with the prompt engineering system, allowing users to easily input data, receive prompts, and view evaluation results."
     }
 ]

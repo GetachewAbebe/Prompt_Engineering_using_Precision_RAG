@@ -1,168 +1,161 @@
-
 import os
 import json
-import sys
 import streamlit as st
-from streamlit.components.v1 import html
-from utils.data_generation import main
+from utils.data_generation import main as generate_prompts
 from utils.retrieval import retrieve_context
-from utils.evaluation import main1
+from utils.evaluation import main1 as evaluate_accuracy
 from utils.ranking import evaluate_prompt
 
-# Set the page title and icon
+# Constants
+TEST_DATA_PATH = os.path.join("test_dataset", "test_data.json")
+TEST_OUTPUT_COUNT = 5
+
+# --- Set up Streamlit page ---
 st.set_page_config(page_title="Prompt Generation App", page_icon="🤖", layout="wide")
 
-# --- Style the page ---
-st.markdown(
-    """
-    <style>
-        .stApp {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
-        }
-        .stTextInput {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .stButton {
-            background-color: white;
-            color: black;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        .stButton:hover {
-            background-color: #f2f2f2;
-        }
-        .stTable {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .stTable th, .stTable td {
-            text-align: left;
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-        }
-        .stTable th {
-            background-color: #f2f2f2;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# --- Utility Functions ---
+@st.cache_data
+def load_json(file_path):
+    """Load a JSON file."""
+    try:
+        with open(file_path, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        st.error(f"File not found: {file_path}")
+        return {}
 
-# --- Sidebar ---
-st.sidebar.header("Search History")
-
-# search_history_text_area = st.sidebar.text_area("Search History:", height=200)
-# uploaded_file = st.sidebar.file_uploader("Upload a file", type=["txt", "json","pdf"])
-
-# --- Main Content ---
-st.title("Prompt Generation App 🤖")
-# Create a list to store the search history
-search_history_list = []
-
-# Create a text input field for the user to enter their query
-query_input = st.text_input("Enter your query:", value="")
-
-# Store the last search query
-if query_input:
-    search_history_list.append(query_input)
-    if len(search_history_list) > 5:
-        search_history_list = search_history_list[-5:]  # keep only the last 5 searches
-
-    # Create the text area with the updated search history
-    st.sidebar.text_area("Search History:", height=200, value="\n".join(search_history_list))
-    
-# Add an upload button for files
-uploaded_file = st.sidebar.file_uploader("Upload a file", type=["txt", "json", "pdf"])
+@st.cache_data
+def generate_test_data(query):
+    """Generate prompts and retrieve test data."""
+    generate_prompts(str(TEST_OUTPUT_COUNT), query)
+    return load_json(TEST_DATA_PATH)
 
 
-# Buttons for Generate Prompts and Evaluate Prompts
-# Buttons for Generate Prompts and Evaluate Prompts
-col1, col2, col3 = st.columns(3)
-with col1:
-    generate_button = st.button("Generate Prompts")
-with col2:
-    evaluate_button = st.button("Evaluate Prompts")
-with col3:
-    rank_button = st.button("Rank Prompts")
+@st.cache_data
+def evaluate_test_prompts():
+    """Evaluate the accuracy of generated prompts."""
+    return evaluate_accuracy()
 
-# Variables to store generated data
-questions = []
-accuracies = []
-ranks = []
 
-# --- Generate Prompts Section ---
-if generate_button:
-    # Retrieve context based on the user query
-    context_docs = retrieve_context(query_input)
-    context = " ".join([doc.page_content for doc in context_docs])
+def render_table(data, column_names):
+    """Render data in a table format."""
+    formatted_data = {col: [row[i] for row in data] for i, col in enumerate(column_names)}
+    st.table(formatted_data)
 
-    # Call the main function from data_generator.py
-    main("5", query_input)  # pass the number of test outputs as an argument
 
-    # Load the generated data from test_data.json
-    test_data_path = os.path.join("test_dataset", "test_data.json")
-    with open(test_data_path, "r") as f:
-        test_data = json.load(f)
+def handle_file_upload(uploaded_file):
+    """Validate and handle uploaded files."""
+    if uploaded_file:
+        try:
+            file_content = uploaded_file.read()
+            st.success(f"File {uploaded_file.name} uploaded successfully.")
+            return file_content
+        except Exception as e:
+            st.error(f"Error reading the uploaded file: {e}")
+            return None
+    return None
 
-    # Display only the questions
-    questions = [item["user"] for item in test_data]
-    st.write("Generated Questions:")
-    st.write(questions)  # Display questions directly
 
-# --- Evaluate Prompts Section ---
-if evaluate_button:
-    # Load the generated data from test_data.json
-    test_data_path = os.path.join("test_dataset", "test_data.json")
-    with open(test_data_path, "r") as f:
-        test_data = json.load(f)
+# --- Sidebar Functions ---
+def render_sidebar(search_history_list):
+    """Render the sidebar with search history and file uploader."""
+    with st.sidebar.expander("Search History"):
+        st.text_area("History:", height=200, value="\n".join(search_history_list))
 
-    # Display only the questions
-    questions = [item["user"] for item in test_data]
-    accuracies = main1()  # Call the main1 function
+    return st.sidebar.file_uploader("Upload a File", type=["txt", "json", "pdf"])
 
-    # Sort the data by accuracy in descending order
-    sorted_data = sorted(zip(questions, accuracies), key=lambda x: x[1], reverse=True)
 
-    # Get the ranks
-    ranks = [i + 1 for i in range(len(sorted_data))]
+# --- Main Functionalities ---
+def generate_prompts_section(query_input):
+    """Generate prompts based on user input."""
+    if not query_input:
+        st.error("Please enter a query before generating prompts.")
+        return
 
-    # Display the sorted data
-    st.write("Evaluation Results:")
-    st.table({"Rank": ranks, "Questions": [x[0] for x in sorted_data], "Accuracy": [x[1] for x in sorted_data]})
+    with st.spinner("Generating prompts..."):
+        try:
+            test_data = generate_test_data(query_input)
+            questions = [item["user"] for item in test_data]
+            st.write("Generated Questions:")
+            st.write(questions)
+        except Exception as e:
+            st.error(f"An error occurred during prompt generation: {e}")
 
-if rank_button:
-    # Load the generated data from test_data.json
-    test_data_path = os.path.join("test_dataset", "test_data.json")
-    with open(test_data_path, "r") as f:
-        test_data = json.load(f)
 
-    # Get the questions from test_data
-    questions = [item["user"] for item in test_data]
+def evaluate_prompts_section():
+    """Evaluate prompts for accuracy and display results."""
+    try:
+        test_data = load_json(TEST_DATA_PATH)
+        questions = [item["user"] for item in test_data]
+        accuracies = evaluate_test_prompts()
 
-    # Evaluate the prompts using both Monte Carlo and Elo
-    evaluations = evaluate_prompt(query_input, questions)
+        # Sort by accuracy
+        sorted_data = sorted(zip(questions, accuracies), key=lambda x: x[1], reverse=True)
+        ranks = [i + 1 for i in range(len(sorted_data))]
 
-    # Extract Monte Carlo scores and Elo ratings
-    monte_carlo_scores = [evaluations[f'test_case_{idx+1}']['Monte Carlo Evaluation'] 
-                          for idx in range(len(questions))]
-    elo_ratings = [evaluations[f'test_case_{idx+1}']['Elo Rating Evaluation'] 
-                   for idx in range(len(questions))]
+        st.write("Evaluation Results:")
+        render_table(sorted_data, ["Rank", "Questions", "Accuracy"])
+    except Exception as e:
+        st.error(f"An error occurred during prompt evaluation: {e}")
 
-    # Create a table to display the rankings
-    st.write("Ranked Prompts (Elo and Monte Carlo):")
-    st.table(
-        {
-            "Prompt": questions,
-            "Monte Carlo Score": monte_carlo_scores,
-            "Elo Rating": elo_ratings
-        }
-    )
+
+def rank_prompts_section(query_input):
+    """Rank prompts using Monte Carlo and Elo rating systems."""
+    try:
+        test_data = load_json(TEST_DATA_PATH)
+        questions = [item["user"] for item in test_data]
+
+        evaluations = evaluate_prompt(query_input, questions)
+        data = [
+            {
+                "Prompt": q,
+                "Monte Carlo Score": evaluations[f'test_case_{i+1}']['Monte Carlo Evaluation'],
+                "Elo Rating": evaluations[f'test_case_{i+1}']['Elo Rating Evaluation']
+            }
+            for i, q in enumerate(questions)
+        ]
+        st.write("Ranked Prompts (Elo and Monte Carlo):")
+        st.dataframe(data)
+    except Exception as e:
+        st.error(f"An error occurred during prompt ranking: {e}")
+
+
+# --- Main App Layout ---
+def main():
+    # Render Title
+    st.title("Prompt Generation App 🤖")
+
+    # Initialize search history
+    search_history_list = []
+
+    # Query Input
+    query_input = st.text_input("Enter your query:", value="")
+
+    # Sidebar
+    uploaded_file = render_sidebar(search_history_list)
+    handle_file_upload(uploaded_file)
+
+    # Buttons for actions
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        generate_button = st.button("Generate Prompts")
+    with col2:
+        evaluate_button = st.button("Evaluate Prompts")
+    with col3:
+        rank_button = st.button("Rank Prompts")
+
+    # Generate Prompts Section
+    if generate_button:
+        generate_prompts_section(query_input)
+
+    # Evaluate Prompts Section
+    if evaluate_button:
+        evaluate_prompts_section()
+
+    # Rank Prompts Section
+    if rank_button:
+        rank_prompts_section(query_input)
+
+
+if __name__ == "__main__":
+    main()

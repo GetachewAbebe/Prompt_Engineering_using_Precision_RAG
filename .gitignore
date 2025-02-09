@@ -1,4 +1,4 @@
-rag_env/*
+my_env/*
 .env
 fabric/
 utils/__pycache__/*
